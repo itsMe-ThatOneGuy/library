@@ -8,6 +8,31 @@
     <link href="style.css" rel="stylesheet"/> 
 </head>
 <body>
+    <header>
+        <h1>Your Library</h1>
+    </header>
+    <div class="form-container left">
+        <form>
+            <label for="name">Book</label>
+            <input id="name" type="text">
+
+            <label for="author">Author</label>
+            <input id="author" type="text">
+
+            <label for="pages">pages</label>
+            <input id="pages" type="number">
+
+            <label for="status">Status</label>
+            <select id="status" name="status">
+                <option value="read">Read</option>
+                <option value="not-read">Not Read</option>
+            </select>
+
+            <input type="button" class="btn" value="submit">
+        </form>
+    </div>
+    <div class="book-collection">
+    </div>
     
 
     <script src="script.js"></script>
