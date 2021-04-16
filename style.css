@@ -5,3 +5,32 @@
   padding: 0;
   margin: 0;
 }
+
+header {
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0px;
+}
+
+.page-container {
+  border: 2px solid yellow;
+  max-width: 800px;
+  margin: 0px auto;
+}
+
+.form-container {
+  display: flex;
+  border: 2px solid black;
+}
+
+.library {
+  margin-top: 10px;
+  border: 2px solid orange;
+}
+
+.book-card {
+  border: 2px solid purple;
+  max-width: 200px;
+}
+
+
