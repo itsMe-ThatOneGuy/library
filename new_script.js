@@ -15,6 +15,14 @@ class Book {
 
 let library = [];
 
+const submit = document.querySelector('.btn').addEventListener('click', (e) =>{
+    addBook(e);
+    formClear();
+});
+
+const libraryContainer = document.querySelector('.library');
+libraryContainer.addEventListener('click', libraryUpdate);
+
 function addBookToLibrary(newBook) {
     library.push(newBook);
     localSave();
@@ -25,7 +33,7 @@ function getBookInfo() {
     const author = document.querySelector('#author').value;
     const pages = document.querySelector('#pages').value;
     const status = document.querySelector('#status').value;
-    return new Book(title, author, pages, status);
+    return new Book(title, author, pages, status);    
 }
 
 function formClear() {
@@ -33,16 +41,9 @@ function formClear() {
     form.reset();
 }
 
-const submit = document.querySelector('.btn').addEventListener('click', (e) =>{
-    addBook(e);
-    formClear();
-});
-
-function addBook(e) {
-    if(title.value === "" || author.value === "") {
-        return alert("please fill out form")
-    }
+function addBook() {
     addBookToLibrary(getBookInfo());
+    updateBookCards();
 }
 
 function deleteFromLibrary(title) {
@@ -51,8 +52,6 @@ function deleteFromLibrary(title) {
 }
 
 function bookCard(newBook) {
-    const libraryContainer = document.querySelector('.library');
-
     const bookCard = document.createElement("div");
     const title = document.createElement("h3");
     const author = document.createElement("h3");
@@ -79,8 +78,39 @@ function bookCard(newBook) {
 }
 
 function updateBookCards() {
+    resetBookCards();
     for (let element of library) {
         bookCard(element);
+    }
+}
+
+function resetBookCards() {
+    libraryContainer.innerHTML = "";
+}
+
+function getBook(bookTitle) {
+    for (let book of library) {
+      if (book.title === bookTitle) {
+        return book;
+      }
+    }
+    return null;
+}
+
+function libraryUpdate(e) {
+    if (e.target.classList.contains("delete-btn")) {
+        deleteFromLibrary(e.target.parentNode.firstChild.innerHTML);
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    } else if (e.target.classList.contains("read-btn")) {
+        if (e.target.innerHTML === "read") {
+            getBook(e.target.parentNode.firstChild.innerHTML).status = "not-read";
+            e.target.innerHTML = "not-read";
+            localSave();
+        } else {
+            getBook(e.target.parentNode.firstChild.innerHTML).status = "not-read";
+            e.target.innerHTML = "read";
+            localSave();
+        }
     }
 }
 
