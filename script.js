@@ -41,14 +41,23 @@ function addBookCard(newBook) {
     const title = document.createElement("h3");
     const author = document.createElement("h3");
     const pages = document.createElement("h3");
+    const readBtn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
 
     title.textContent = newBook.title;
     author.textContent = newBook.author;
     pages.textContent = newBook.pages;
+    readBtn.textContent = newBook.status;
+    deleteBtn.textContent = "Delete";
+
+    deleteBtn.classList.add("delete-btn");
+    readBtn.classList.add("read-btn");
 
     bookCard.appendChild(title);
     bookCard.appendChild(author);
     bookCard.appendChild(pages);
+    bookCard.appendChild(readBtn);
+    bookCard.appendChild(deleteBtn);
     libraryContainer.appendChild(bookCard);
 }
 
